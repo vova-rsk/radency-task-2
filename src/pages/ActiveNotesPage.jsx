@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import NotesTable from '../components/Tables/NotesTable';
+import Table from '../components/UniversalTable/Table';
 import { STATUS } from '../utils/constants';
 import { changeFilter } from '../redux/notes/notes-actions';
 
@@ -13,7 +13,7 @@ function ActiveNotesPage() {
 
   return (
     <div>
-      <NotesTable />
+      <Table />
     </div>
   );
 }
