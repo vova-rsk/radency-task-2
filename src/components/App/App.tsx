@@ -1,9 +1,13 @@
+import { Outlet } from 'react-router-dom';
+import Container from './App.styled';
+import AppBar from '../AppBar';
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <Container>
+      <AppBar />
+      <Outlet />
+    </Container>
   );
 }
 
