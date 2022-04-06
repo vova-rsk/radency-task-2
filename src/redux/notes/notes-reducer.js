@@ -1,7 +1,7 @@
-import { createReducer } from '@reduxjs/toolkit';
-import { addNote, removeNote, updateNote } from './notes-actions';
+import { createReducer, combineReducers } from '@reduxjs/toolkit';
+import { addNote, removeNote, updateNote, changeFilter } from './notes-actions';
 
-const initialState = [
+const notesInitialState = [
   {
     id: '3edc4rf',
     name: 'Shopping list',
@@ -76,7 +76,7 @@ const initialState = [
   },
 ];
 
-export const notesReducer = createReducer(initialState, {
+const noteListReducer = createReducer(notesInitialState, {
   [addNote]: (state, action) => [...state, action.payload],
   [removeNote]: (state, action) =>
     state.filter(item => item.id !== action.payload),
@@ -85,3 +85,14 @@ export const notesReducer = createReducer(initialState, {
       note.id !== action.payload.id ? note : { ...note, ...action.payload },
     ),
 });
+
+const filterReducer = createReducer(null, {
+  [changeFilter]: (_, action) => action.payload,
+});
+
+const notesReducer = combineReducers({
+  notes: noteListReducer,
+  filter: filterReducer,
+});
+
+export default notesReducer;

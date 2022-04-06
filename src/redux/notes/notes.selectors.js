@@ -1,6 +1,19 @@
-import { STATUS } from '../../utils/constants';
+import { createSelector } from 'reselect';
 
-export const getActiveNotes = state =>
-  state.notes.filter(note => note.status === STATUS.ACTIVE);
-export const getArchivedNotes = state =>
-  state.notes.filter(note => note.status === STATUS.ARCHIVED);
+export const getNotes = state => state.notes;
+
+export const getFilter = state => state.filter;
+
+export const getFilteredContacts = createSelector(
+  [getNotes, getFilter],
+  (notes, filter) =>
+    notes
+      .filter(({ status }) => status === filter)
+      .map(note => {
+        const newNote = { ...note };
+        newNote.dates = newNote.dates && newNote.dates.join(', ');
+        delete newNote.status;
+
+        return newNote;
+      }),
+);
