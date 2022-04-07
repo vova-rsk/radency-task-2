@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import Table from '../components/UniversalTable/Table';
-import { getFilteredNotes } from '../redux/notes/notes.selectors';
+import { getFilteredNotes } from '../redux/notes/notes-selectors';
 import { TABLE_TYPE } from '../utils/constants';
 
 export default function ArchivePage() {
