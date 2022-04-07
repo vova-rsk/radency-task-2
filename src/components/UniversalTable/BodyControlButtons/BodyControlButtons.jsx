@@ -12,7 +12,8 @@ import { removeNote, updateNote } from '../../../redux/notes/notes-actions';
 export default function BodyControlButtons(props) {
   const location = useLocation();
   const dispatch = useDispatch();
-  const { noteId, isCtrlButtonsShow } = props;
+
+  const { noteId, isCtrlButtonsShow, handleSwitchNoteSelection } = props;
 
   const newStatus =
     location.pathname === ROUTES.ACTIVE ? STATUS.ARCHIVED : STATUS.ACTIVE;
@@ -37,7 +38,9 @@ export default function BodyControlButtons(props) {
         </Stack>
       ) : (
         <Stack direction="row">
-          <ControlledCheckbox />
+          <ControlledCheckbox
+            handleSwitchNoteSelection={() => handleSwitchNoteSelection(noteId)}
+          />
         </Stack>
       )}
     </>

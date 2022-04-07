@@ -7,25 +7,36 @@ import TableBody from '../TableBody';
 
 export default function Table(props) {
   const [isCtrlsBtnsShow, setIsCtrlsBtnsShow] = useState(true);
+  const [selectedNotesIds, setMarkedNotesIds] = useState([]);
 
   const { tableType } = props;
 
+  const handleSwitchNoteSelection = noteId => {
+    const isExist = selectedNotesIds.includes(noteId);
+
+    if (isExist) {
+      const updatedValue = selectedNotesIds.filter(id => id !== noteId);
+      setMarkedNotesIds(updatedValue);
+      return;
+    }
+
+    setMarkedNotesIds([...selectedNotesIds, noteId]);
+  };
+
   return (
     <TableContainer component={Paper}>
-      <MuiTable
-      // sx={{
-      //     borderCollapse: 'separate',
-      //     borderSpacing: '0 5px'
-      // }}
-      >
+      <MuiTable>
         <TableHead
           tableType={tableType}
+          selectedNotesIds={selectedNotesIds}
           isControlButtonsShow={isCtrlsBtnsShow}
           handleSwitchButtons={() => setIsCtrlsBtnsShow(!isCtrlsBtnsShow)}
+          handleResetSelectedNotesIds={() => setMarkedNotesIds([])}
         />
         <TableBody
           tableType={tableType}
           isControlButtonsShow={isCtrlsBtnsShow}
+          handleSwitchNoteSelection={handleSwitchNoteSelection}
         />
       </MuiTable>
     </TableContainer>

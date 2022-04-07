@@ -8,13 +8,13 @@ import { TABLE_TYPE } from '../../../utils/constants';
 import {
   getFilteredNotes,
   getSummary,
-} from '../../../redux/notes/notes.selectors';
+} from '../../../redux/notes/notes-selectors';
 
 export default function TableBody(props) {
   const notesList = useSelector(getFilteredNotes);
   const summaryList = useSelector(getSummary);
 
-  const { tableType, isControlButtonsShow } = props;
+  const { tableType, isControlButtonsShow, handleSwitchNoteSelection } = props;
   const isNotesTable = tableType === TABLE_TYPE.NOTES;
   const tableData = isNotesTable ? notesList : summaryList;
 
@@ -42,8 +42,9 @@ export default function TableBody(props) {
               {isNotesTable && (
                 <TableCell key="CtrlBtns" cellType="body">
                   <BodyControlButtons
-                    isCtrlButtonsShow={isControlButtonsShow}
                     noteId={item.id}
+                    isCtrlButtonsShow={isControlButtonsShow}
+                    handleSwitchNoteSelection={handleSwitchNoteSelection}
                   />
                 </TableCell>
               )}

@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 
-export default function TableCheckbox() {
+export default function TableCheckbox(props) {
   const [checked, setChecked] = useState(false);
 
-  const handleChange = event => {
-    // if checked - in redux add new id to array, if unchecked - remove id from array
-    setChecked(event.target.checked);
+  const { handleSwitchNoteSelection } = props;
+
+  const handleChange = e => {
+    handleSwitchNoteSelection();
+    setChecked(e.target.checked);
   };
 
   return (

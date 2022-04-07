@@ -9,12 +9,18 @@ import {
   NOTES_HEAD_CAPTIONS,
   SUMMARY_HEAD_CAPTIONS,
 } from '../../../utils/constants';
-import { getFilteredNotes } from '../../../redux/notes/notes.selectors';
+import { getFilteredNotes } from '../../../redux/notes/notes-selectors';
 
 export default function TableHead(props) {
   const notesList = useSelector(getFilteredNotes);
 
-  const { tableType, isControlButtonsShow, handleSwitchButtons } = props;
+  const {
+    tableType,
+    selectedNotesIds,
+    isControlButtonsShow,
+    handleSwitchButtons,
+    handleResetSelectedNotesIds,
+  } = props;
   const isNotesTable = tableType === TABLE_TYPE.NOTES;
   const isShowButtons = isNotesTable && notesList.length > 0;
   const captionList = isNotesTable
@@ -34,8 +40,10 @@ export default function TableHead(props) {
         {isShowButtons && (
           <TableCell key="CtrlBtns" cellType="header">
             <HeadControlButtons
+              selectedNotesIds={selectedNotesIds}
               isCtrlButtonsShow={isControlButtonsShow}
               handleSwitchButtons={handleSwitchButtons}
+              handleResetSelectedNotesIds={handleResetSelectedNotesIds}
             />
           </TableCell>
         )}

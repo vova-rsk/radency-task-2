@@ -1,28 +1,56 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 import TableButton from '../TableButton';
 import TableArchiveButton from '../TableArchiveButton';
-import { OPERATION_TYPE } from '../../../utils/constants';
+import { OPERATION_TYPE, STATUS, ROUTES } from '../../../utils/constants';
+import {
+  replaceNotesList,
+  removeNotesList,
+} from '../../../redux/notes/notes-actions';
 
 export default function HeadControlButtons(props) {
-  const { isCtrlButtonsShow, handleSwitchButtons } = props;
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const [operation, setOperation] = useState(null);
 
-  const handleMakeAction = operationType => {
-    console.log(operationType);
-    // if operationType dispatch
-    console.log('need to set operationType in redux');
+  const {
+    selectedNotesIds,
+    isCtrlButtonsShow,
+    handleSwitchButtons,
+    handleResetSelectedNotesIds,
+  } = props;
+
+  const handleCtrlButtonClick = operationType => {
+    setOperation(operationType);
     handleSwitchButtons();
   };
 
   const handleClickApprove = () => {
-    console.log('done');
+    if (selectedNotesIds.length === 0) {
+      return;
+    }
+
+    if (operation === OPERATION_TYPE.DELETE) {
+      dispatch(removeNotesList(selectedNotesIds));
+    } else {
+      const { pathname } = location;
+      const status =
+        pathname === ROUTES.ACTIVE ? STATUS.ARCHIVED : STATUS.ACTIVE;
+
+      dispatch(replaceNotesList({ ids: selectedNotesIds, status }));
+    }
+
+    handleResetSelectedNotesIds();
     handleSwitchButtons();
   };
 
   const handleClickCancel = () => {
-    console.log('need to uncheck selected checkboxes');
+    handleResetSelectedNotesIds();
     handleSwitchButtons();
   };
 
@@ -31,11 +59,11 @@ export default function HeadControlButtons(props) {
       {isCtrlButtonsShow ? (
         <Stack direction="row" sx={{ justifyContent: 'end' }}>
           <TableArchiveButton
-            handleClick={() => handleMakeAction(OPERATION_TYPE.ARCHIVE)}
+            handleClick={() => handleCtrlButtonClick(OPERATION_TYPE.ARCHIVE)}
           />
           <TableButton
             icon={<DeleteIcon />}
-            handleClick={() => handleMakeAction(OPERATION_TYPE.DELETE)}
+            handleClick={() => handleCtrlButtonClick(OPERATION_TYPE.DELETE)}
           />
         </Stack>
       ) : (
