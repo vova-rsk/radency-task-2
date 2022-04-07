@@ -8,7 +8,7 @@ import { TABLE_TYPE } from '../../../utils/constants';
 import {
   getFilteredNotes,
   getSummary,
-} from '../../../redux/notes/notes.selectors'; ////
+} from '../../../redux/notes/notes.selectors';
 
 export default function TableBody(props) {
   const notesList = useSelector(getFilteredNotes);
@@ -20,32 +20,36 @@ export default function TableBody(props) {
 
   return (
     <Body>
-      {tableData.map(item => {
-        const keys = Object.keys(item);
-        const rowMarkup = keys.map((key, idx) =>
-          idx === 0 ? (
-            <TableCell key={idx} cellType="body">
-              <CategoryIcon categoryName={item.category} />
-            </TableCell>
-          ) : (
-            <TableCell key={idx} cellType="body">
-              {item[key]}
-            </TableCell>
-          ),
-        );
-
-        return (
-          <TableRow key={item.id}>
-            {rowMarkup}
-
-            {isNotesTable && (
-              <TableCell key="CtrlBtns" cellType="body" noteId={item.id}>
-                <BodyControlButtons isCtrlButtonsShow={isControlButtonsShow} />
+      {tableData &&
+        tableData.map(item => {
+          const keys = Object.keys(item);
+          const rowMarkup = keys.map((key, idx) =>
+            idx === 0 ? (
+              <TableCell key={idx} cellType="body">
+                <CategoryIcon categoryName={item.category} />
               </TableCell>
-            )}
-          </TableRow>
-        );
-      })}
+            ) : (
+              <TableCell key={idx} cellType="body">
+                {item[key]}
+              </TableCell>
+            ),
+          );
+
+          return (
+            <TableRow key={item.id}>
+              {rowMarkup}
+
+              {isNotesTable && (
+                <TableCell key="CtrlBtns" cellType="body">
+                  <BodyControlButtons
+                    isCtrlButtonsShow={isControlButtonsShow}
+                    noteId={item.id}
+                  />
+                </TableCell>
+              )}
+            </TableRow>
+          );
+        })}
     </Body>
   );
 }

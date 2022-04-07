@@ -9,8 +9,8 @@ export const HEAD_BUTTONS_TYPE = {
 };
 
 export const ROUTES = {
-  ACTIVE: 'active-notes',
-  ARCHIVE: 'archive',
+  ACTIVE: '/active-notes',
+  ARCHIVE: '/archive',
 };
 
 export const TABLE_TYPE = {
@@ -38,3 +38,19 @@ export const CATEGORIES = {
   IDEA: 'Idea',
   QUOTA: 'Quote',
 };
+
+export const NOTES_HEAD_CAPTIONS = [
+  'icon',
+  'names',
+  'created',
+  'category',
+  'content',
+  'dates',
+];
+
+export const SUMMARY_HEAD_CAPTIONS = [
+  'icon',
+  'note category',
+  'active',
+  'archived',
+];

@@ -1,6 +1,5 @@
 import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import { addNote, removeNote, updateNote, changeFilter } from './notes-actions';
-import { STATUS } from '../../utils/constants';
 
 const notesInitialState = [
   {
@@ -46,7 +45,7 @@ const notesInitialState = [
     category: 'Task',
     content: 'The Lean Startup',
     dates: null,
-    status: 'active',
+    status: 'archived',
   },
   {
     id: 'ascdgbg',
@@ -87,7 +86,7 @@ const noteListReducer = createReducer(notesInitialState, {
     ),
 });
 
-const filterReducer = createReducer(STATUS.ACTIVE, {
+const filterReducer = createReducer(null, {
   [changeFilter]: (_, action) => action.payload,
 });
 

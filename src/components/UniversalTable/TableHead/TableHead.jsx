@@ -4,20 +4,22 @@ import TableRow from '@mui/material/TableRow';
 import HeadControlButtons from '../HeadControlButtons';
 import TableCell from '../TableCell';
 import captionsCapitalization from '../../../utils/captionsCapitalization';
-import { TABLE_TYPE } from '../../../utils/constants';
 import {
-  getFilteredNotes,
-  getSummary,
-} from '../../../redux/notes/notes.selectors'; ////
+  TABLE_TYPE,
+  NOTES_HEAD_CAPTIONS,
+  SUMMARY_HEAD_CAPTIONS,
+} from '../../../utils/constants';
+import { getFilteredNotes } from '../../../redux/notes/notes.selectors';
 
 export default function TableHead(props) {
   const notesList = useSelector(getFilteredNotes);
-  const summaryList = useSelector(getSummary);
 
   const { tableType, isControlButtonsShow, handleSwitchButtons } = props;
   const isNotesTable = tableType === TABLE_TYPE.NOTES;
-  const tableData = isNotesTable ? notesList : summaryList;
-  const captionList = tableData && Object.keys(tableData[0]);
+  const isShowButtons = isNotesTable && notesList.length > 0;
+  const captionList = isNotesTable
+    ? NOTES_HEAD_CAPTIONS
+    : SUMMARY_HEAD_CAPTIONS;
   const capitalizedCaptionList = captionsCapitalization(captionList);
 
   return (
@@ -29,7 +31,7 @@ export default function TableHead(props) {
           </TableCell>
         ))}
 
-        {isNotesTable && (
+        {isShowButtons && (
           <TableCell key="CtrlBtns" cellType="header">
             <HeadControlButtons
               isCtrlButtonsShow={isControlButtonsShow}

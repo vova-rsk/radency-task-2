@@ -8,7 +8,7 @@ export default function TableArchiveButton(props) {
   const location = useLocation();
 
   const { handleClick } = props;
-  const archivePathname = `/${ROUTES.ARCHIVE}`;
+  const archivePathname = `${ROUTES.ARCHIVE}`;
   const archiveButtonIcon =
     location.pathname === archivePathname ? <UnarchiveIcon /> : <ArchiveIcon />;
 
