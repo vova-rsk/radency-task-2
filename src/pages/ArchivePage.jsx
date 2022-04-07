@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Table from '../components/UniversalTable/Table';
 import { STATUS } from '../utils/constants';
 import { changeFilter } from '../redux/notes/notes-actions';
+import { getFilteredNotes } from '../redux/notes/notes.selectors';
 
 function ArchivePage() {
   const dispatch = useDispatch();
+  const notesList = useSelector(getFilteredNotes);
 
   useEffect(() => {
     dispatch(changeFilter(STATUS.ARCHIVED));
@@ -13,7 +15,7 @@ function ArchivePage() {
 
   return (
     <div>
-      <Table />
+      <Table tableData={notesList} tableType="notesTable" />
     </div>
   );
 }
