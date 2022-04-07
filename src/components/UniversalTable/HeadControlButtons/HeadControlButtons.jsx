@@ -6,10 +6,9 @@ import TableButton from '../TableButton';
 import TableArchiveButton from '../TableArchiveButton';
 import { OPERATION_TYPE } from '../../../utils/constants';
 
-export default function HeadControlButtons({
-  isCtrlButtonsShow,
-  handleSwitchButtons,
-}) {
+export default function HeadControlButtons(props) {
+  const { isCtrlButtonsShow, handleSwitchButtons } = props;
+
   const handleMakeAction = operationType => {
     console.log(operationType);
     // if operationType dispatch

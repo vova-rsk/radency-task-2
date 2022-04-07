@@ -3,8 +3,9 @@ import TableCell from '../TableCell';
 import HeadControlButtons from '../HeadControlButtons';
 import BodyControlButtons from '../BodyControlButtons';
 import CategoryIcon from '../CategoryIcon';
+import { TABLE_TYPE } from '../../../utils/constants';
 
-function TableRow(props) {
+export default function TableRow(props) {
   const {
     note,
     summary,
@@ -15,7 +16,7 @@ function TableRow(props) {
   } = props;
   const targetElem = captionList || note || summary;
   const targetKeys = Object.keys(targetElem);
-  const isNotesTable = tableType === 'notesTable';
+  const isNotesTable = tableType === TABLE_TYPE.NOTES;
 
   return (
     <Row>
@@ -46,5 +47,3 @@ function TableRow(props) {
     </Row>
   );
 }
-
-export default TableRow;

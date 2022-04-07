@@ -1,3 +1,4 @@
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -6,20 +7,25 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+import { ROUTES, STATUS } from '../../utils/constants';
+import { changeFilter } from '../../redux/notes/notes-actions';
 
 const pages = [
   {
     name: 'Active notes',
-    route: '/active-notes',
+    route: ROUTES.ACTIVE,
+    status: STATUS.ACTIVE,
   },
   {
     name: 'Archive',
-    route: '/archive',
+    route: ROUTES.ARCHIVE,
+    status: STATUS.ARCHIVED,
   },
 ];
 
-const ResponsiveAppBar = () => {
+export default function ResponsiveAppBar() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <AppBar position="static">
@@ -39,10 +45,13 @@ const ResponsiveAppBar = () => {
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map(({ name, route }) => (
+            {pages.map(({ name, route, status }) => (
               <Button
                 key={name}
-                onClick={() => navigate(route)}
+                onClick={() => {
+                  dispatch(changeFilter(status));
+                  navigate(route);
+                }}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {name}
@@ -53,6 +62,4 @@ const ResponsiveAppBar = () => {
       </Container>
     </AppBar>
   );
-};
-
-export default ResponsiveAppBar;
+}

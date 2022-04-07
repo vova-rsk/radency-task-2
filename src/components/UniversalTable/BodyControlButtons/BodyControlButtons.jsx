@@ -1,13 +1,13 @@
-import { useState } from 'react';
 import Stack from '@mui/material/Stack';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import TableButton from '../TableButton';
 import TableArchiveButton from '../TableArchiveButton';
-import { OPERATION_TYPE } from '../../../utils/constants';
 import ControlledCheckbox from '../TableCheckbox';
 
-export default function BodyControlButtons({ noteId, isCtrlButtonsShow }) {
+export default function BodyControlButtons(props) {
+  const { noteId, isCtrlButtonsShow } = props;
+
   // const handleCheck = () => {
   //     console.log('check');
   // };

@@ -1,6 +1,8 @@
 import IconButton from '@mui/material/IconButton';
 
-function TableButton({ icon, handleClick }) {
+export default function TableButton(props) {
+  const { icon, handleClick } = props;
+
   return (
     <IconButton
       aria-label="delete"
@@ -12,5 +14,3 @@ function TableButton({ icon, handleClick }) {
     </IconButton>
   );
 }
-
-export default TableButton;

@@ -7,7 +7,8 @@ import QuestionMarkOutlinedIcon from '@mui/icons-material/QuestionMarkOutlined';
 import { CATEGORIES } from '../../../utils/constants';
 import Container from './CategoryIcon.styled';
 
-function CategoryIcon({ categoryName }) {
+export default function CategoryIcon(props) {
+  const { categoryName } = props;
   const { TASK, RANDOM_THOUGHT, IDEA, QUOTA } = CATEGORIES;
   let icon = null;
 
@@ -35,14 +36,9 @@ function CategoryIcon({ categoryName }) {
         sx={{
           width: '30px',
           height: '30px',
-          // color: 'transparent',
-          // backgroundColor: 'transparent',
-          // borderRadius: '50%',
         }}
         inheritViewBox={true}
       />
     </Container>
   );
 }
-
-export default CategoryIcon;

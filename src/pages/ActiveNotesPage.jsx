@@ -1,31 +1,16 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import Table from '../components/UniversalTable/Table';
-import { STATUS } from '../utils/constants';
-import { changeFilter } from '../redux/notes/notes-actions';
-import { getFilteredNotes, getSummary } from '../redux/notes/notes.selectors';
+import { TABLE_TYPE } from '../utils/constants';
 
-function ActiveNotesPage() {
-  const dispatch = useDispatch();
-  const notesList = useSelector(getFilteredNotes);
-  const summary = useSelector(getSummary);
-  console.log(summary);
-
-  useEffect(() => {
-    dispatch(changeFilter(STATUS.ACTIVE));
-  }, [dispatch]);
-
+export default function ActiveNotesPage() {
   return (
     <>
       <div>
-        <Table tableData={notesList} tableType="notesTable" />
+        <Table tableType={TABLE_TYPE.NOTES} />
       </div>
       <div>Блок модалки</div>
       <div>
-        <Table tableData={null} tableType="summaryTable" />
+        <Table tableType={TABLE_TYPE.SUMMARY} />
       </div>
     </>
   );
 }
-
-export default ActiveNotesPage;

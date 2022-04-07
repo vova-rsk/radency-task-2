@@ -7,6 +7,7 @@ import App from './components/App';
 import {store} from './redux/store';
 import ActiveNotesPage from './pages/ActiveNotesPage';
 import ArchivePage from './pages/ArchivePage';
+import { ROUTES } from './utils/constants';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,8 +16,8 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<ActiveNotesPage />} />
-            <Route path="active-notes" element={<ActiveNotesPage />} />
-            <Route path="archive" element={<ArchivePage />} />
+            <Route path={ ROUTES.ACTIVE } element={<ActiveNotesPage />} />
+            <Route path={ ROUTES.ARCHIVE } element={<ArchivePage />} />
           </Route>
         </Routes>
       </BrowserRouter>
