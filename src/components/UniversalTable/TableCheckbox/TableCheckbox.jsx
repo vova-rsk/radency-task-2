@@ -14,7 +14,7 @@ export default function TableCheckbox() {
       checked={checked}
       onChange={handleChange}
       inputProps={{ 'aria-label': 'controlled' }}
-      sx={{ padding: '2px' }}
+      sx={{ padding: '2px', marginLeft: 'auto', marginRight: 'auto' }}
     />
   );
 }
