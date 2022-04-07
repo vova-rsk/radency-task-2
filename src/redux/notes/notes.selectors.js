@@ -13,34 +13,27 @@ export const getFilteredNotes = createSelector(
         const newNote = { ...note };
         newNote.dates = newNote.dates ? newNote.dates.join(', ') : '';
         delete newNote.status;
+
         return newNote;
       }),
 );
 
 export const getSummary = createSelector([getNotes], notes => {
-  return notes.reduce((summary, note) => {
-    const idx = summary.findIndex((el, idx) => el.category === note.category);
+  const summary = notes.reduce((summary, note) => {
+    const initEntry = { id: null, category: null, active: 0, archived: 0 };
+    const existingEntry = summary.find(elem => elem.category === note.category);
 
-    if (idx === -1) {
-      return [
-        ...summary,
-        {
-          id: note.category,
-          category: note.category,
-          active: 0,
-          archived: 0,
-        },
-      ];
+    if (existingEntry) {
+      existingEntry[note.status] += 1;
+
+      return summary;
     }
 
-    const currentStatus = note.status;
-
-    return summary.map(item => {
-      if (item.category === note.category) {
-        item[currentStatus] += 1;
-      }
-
-      return item;
-    });
+    initEntry.id = note.category;
+    initEntry.category = note.category;
+    initEntry[note.status] += 1;
+    return [...summary, initEntry];
   }, []);
+
+  return summary;
 });
