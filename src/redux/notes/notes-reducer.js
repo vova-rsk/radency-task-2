@@ -1,5 +1,6 @@
 import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import { addNote, removeNote, updateNote, changeFilter } from './notes-actions';
+import { STATUS } from '../../utils/constants';
 
 const notesInitialState = [
   {
@@ -86,7 +87,7 @@ const noteListReducer = createReducer(notesInitialState, {
     ),
 });
 
-const filterReducer = createReducer(null, {
+const filterReducer = createReducer(STATUS.ACTIVE, {
   [changeFilter]: (_, action) => action.payload,
 });
 

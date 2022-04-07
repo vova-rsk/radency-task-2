@@ -8,9 +8,14 @@ export const HEAD_BUTTONS_TYPE = {
   AGREEMENT: 'agreement',
 };
 
-export const TABLE_TYPE = {
+export const ROUTES = {
   ACTIVE: 'active-notes',
   ARCHIVE: 'archive',
+};
+
+export const TABLE_TYPE = {
+  NOTES: 'notes table',
+  SUMMARY: 'summary table',
 };
 
 export const TABLE_HEAD_CAPTIONS = [

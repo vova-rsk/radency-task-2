@@ -11,19 +11,26 @@ export const getFilteredNotes = createSelector(
       .filter(({ status }) => status === filter)
       .map(note => {
         const newNote = { ...note };
-        newNote.dates = newNote.dates && newNote.dates.join(', ');
+        newNote.dates = newNote.dates ? newNote.dates.join(', ') : '';
         delete newNote.status;
-
         return newNote;
       }),
 );
 
 export const getSummary = createSelector([getNotes], notes => {
   return notes.reduce((summary, note) => {
-    const idx = summary.findIndex(el => el.category === note.category);
+    const idx = summary.findIndex((el, idx) => el.category === note.category);
 
     if (idx === -1) {
-      return [...summary, { category: note.category, active: 0, archived: 0 }];
+      return [
+        ...summary,
+        {
+          id: note.category,
+          category: note.category,
+          active: 0,
+          archived: 0,
+        },
+      ];
     }
 
     const currentStatus = note.status;
