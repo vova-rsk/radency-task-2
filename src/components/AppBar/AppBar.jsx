@@ -24,7 +24,7 @@ export default function ResponsiveAppBar() {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" id="edit-portal">
         <Toolbar disableGutters>
           <TextSnippetIcon sx={{ marginRight: '10px' }} />
           <Typography

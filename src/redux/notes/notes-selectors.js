@@ -4,6 +4,8 @@ export const getNotes = state => state.notes;
 
 export const getFilter = state => state.filter;
 
+export const getModalVisibilityStatus = state => state.modalShow;
+
 export const getFilteredNotes = createSelector(
   [getNotes, getFilter],
   (notes, filter) =>
@@ -18,8 +20,8 @@ export const getFilteredNotes = createSelector(
       }),
 );
 
-export const getSummary = createSelector([getNotes], notes => {
-  const summary = notes.reduce((summary, note) => {
+export const getSummary = state =>
+  state.notes.reduce((summary, note) => {
     const initEntry = { id: null, category: null, active: 0, archived: 0 };
     const existingEntry = summary.find(elem => elem.category === note.category);
 
@@ -35,5 +37,5 @@ export const getSummary = createSelector([getNotes], notes => {
     return [...summary, initEntry];
   }, []);
 
-  return summary;
-});
+export const getNoteById = id => state =>
+  state.notes.find(note => note.id === id);
