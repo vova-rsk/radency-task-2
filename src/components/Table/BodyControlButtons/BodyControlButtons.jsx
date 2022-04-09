@@ -12,6 +12,7 @@ import UniversalModal from '../../Modal/UniversalModal';
 import {
   removeNote,
   updateNote,
+  changeButtonsLockStatus,
   changeCreationBarVisibility,
 } from '../../../redux/notes/notes-actions';
 
@@ -28,6 +29,7 @@ export default function BodyControlButtons(props) {
 
   const handleEditBtnClick = () => {
     setIsModalShow(!isModalShow);
+    dispatch(changeButtonsLockStatus());
     dispatch(changeCreationBarVisibility());
   };
 

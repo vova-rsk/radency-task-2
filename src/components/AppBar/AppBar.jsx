@@ -7,6 +7,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import { ROUTES } from '../../utils/constants';
+import ButtonLocker from '../ButtonLocker/ButtonLocker';
 
 const pages = [
   {
@@ -41,13 +42,14 @@ export default function ResponsiveAppBar() {
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map(({ name, route }) => (
-              <Button
-                key={name}
-                onClick={() => navigate(route)}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {name}
-              </Button>
+              <ButtonLocker key={name}>
+                <Button
+                  onClick={() => navigate(route)}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {name}
+                </Button>
+              </ButtonLocker>
             ))}
           </Box>
         </Toolbar>

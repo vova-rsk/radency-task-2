@@ -3,6 +3,7 @@ import ArchiveIcon from '@mui/icons-material/Archive';
 import UnarchiveIcon from '@mui/icons-material/Unarchive';
 import TableButton from '../TableButton';
 import { ROUTES } from '../../../utils/constants';
+import ButtonLocker from '../../ButtonLocker/ButtonLocker';
 
 export default function TableArchiveButton(props) {
   const location = useLocation();
@@ -16,5 +17,9 @@ export default function TableArchiveButton(props) {
       <ArchiveIcon sx={{ color }} />
     );
 
-  return <TableButton icon={archiveButtonIcon} handleClick={handleClick} />;
+  return (
+    <ButtonLocker>
+      <TableButton icon={archiveButtonIcon} handleClick={handleClick} />
+    </ButtonLocker>
+  );
 }

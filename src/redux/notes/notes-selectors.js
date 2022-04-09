@@ -9,13 +9,6 @@ export const getNoteCreationBarShowStatus = state => state.creationBarShow;
 export const getFilteredNotes = createSelector(
   [getNotes, getFilter],
   (notes, filter) => notes.filter(({ status }) => status === filter),
-  // .map(note => {
-  //   const newNote = { ...note };
-  //   newNote.dates = newNote.dates ? newNote.dates.join(', ') : '';
-  //   delete newNote.status;
-
-  //   return newNote;
-  // }),
 );
 
 export const getSummary = state =>
@@ -37,3 +30,5 @@ export const getSummary = state =>
 
 export const getNoteById = id => state =>
   state.notes.find(note => note.id === id);
+
+export const getButtonLockStatus = state => state.isButtonsLock;
