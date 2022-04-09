@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Button from '@mui/material/Button';
 import UniversalModal from '../Modal/UniversalModal';
-import { Container, ButtonThumb } from './AddNoteBar.jstyled';
+import Container from './AddNoteBar.styled';
 
 export default function AddNoteBar() {
   const [isModalShow, setIsModalShow] = useState(false);
@@ -11,16 +11,15 @@ export default function AddNoteBar() {
       {isModalShow && (
         <UniversalModal handleModalClose={() => setIsModalShow(!isModalShow)} />
       )}
-      <ButtonThumb>
-        {!isModalShow && (
-          <Button
-            variant="contained"
-            onClick={() => setIsModalShow(!isModalShow)}
-          >
-            Create Note
-          </Button>
-        )}
-      </ButtonThumb>
+
+      {!isModalShow && (
+        <Button
+          variant="contained"
+          onClick={() => setIsModalShow(!isModalShow)}
+        >
+          Create Note
+        </Button>
+      )}
     </Container>
   );
 }

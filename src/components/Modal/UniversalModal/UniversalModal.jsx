@@ -3,7 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { STATUS } from '../../../utils/constants';
 import { getNoteById } from '../../../redux/notes/notes-selectors';
-import { addNote, updateNote } from '../../../redux/notes/notes-actions';
+import {
+  addNote,
+  updateNote,
+  changeCreationBarVisibility,
+} from '../../../redux/notes/notes-actions';
 import getCurrentFormatedDate from '../../../utils/getCurrentFormatedDate';
 import getDateIntervalFromContent from '../../../utils/getDateIntervalFromContent';
 import ModalForm from '../ModalForm';
@@ -19,6 +23,7 @@ export default function UniversalModal(props) {
   const [content, setContent] = useState(noteId ? noteToEdit.content : '');
 
   const isNewNote = !Boolean(noteId);
+
   const handleInputChange = e => {
     e.preventDefault();
 
@@ -63,17 +68,19 @@ export default function UniversalModal(props) {
 
     dispatch(action(noteData));
     handleModalClose();
+    !isNewNote && dispatch(changeCreationBarVisibility());
   };
 
   const handleCloseBtnClick = () => {
     handleModalClose();
+    !isNewNote && dispatch(changeCreationBarVisibility());
     return;
   };
-  console.log(noteId);
+
   return (
     <>
       {noteId ? (
-        <Portal id={'edit-portal'}>
+        <Portal id={'edit-note-container'}>
           <ModalForm
             name={name}
             category={category}

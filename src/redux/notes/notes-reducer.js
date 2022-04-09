@@ -6,7 +6,7 @@ import {
   changeFilter,
   removeNotesList,
   replaceNotesList,
-  changeModalVisibility,
+  changeCreationBarVisibility,
 } from './notes-actions';
 import notes from '../../db';
 
@@ -40,14 +40,14 @@ const filterReducer = createReducer(null, {
   [changeFilter]: (_, action) => action.payload,
 });
 
-const modalVisibilityReducer = createReducer(false, {
-  [changeModalVisibility]: (state, _) => !state,
+const noteCreationBarReducer = createReducer(true, {
+  [changeCreationBarVisibility]: (state, _) => !state,
 });
 
 const notesReducer = combineReducers({
   notes: noteListReducer,
   filter: filterReducer,
-  modalShow: modalVisibilityReducer,
+  creationBarShow: noteCreationBarReducer,
 });
 
 export default notesReducer;

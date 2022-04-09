@@ -7,6 +7,4 @@ export const Container = styled.div`
   height: 60px;
 `;
 
-export const ButtonThumb = styled.div`
-  width: 140px;
-`;
+export default Container;

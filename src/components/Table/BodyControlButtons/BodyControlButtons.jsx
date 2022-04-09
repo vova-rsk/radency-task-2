@@ -9,7 +9,11 @@ import TableArchiveButton from '../TableArchiveButton';
 import ControlledCheckbox from '../TableCheckbox';
 import { STATUS, ROUTES } from '../../../utils/constants';
 import UniversalModal from '../../Modal/UniversalModal';
-import { removeNote, updateNote } from '../../../redux/notes/notes-actions';
+import {
+  removeNote,
+  updateNote,
+  changeCreationBarVisibility,
+} from '../../../redux/notes/notes-actions';
 
 export default function BodyControlButtons(props) {
   const location = useLocation();
@@ -22,14 +26,16 @@ export default function BodyControlButtons(props) {
   const newStatus =
     location.pathname === ROUTES.ACTIVE ? STATUS.ARCHIVED : STATUS.ACTIVE;
 
+  const handleEditBtnClick = () => {
+    setIsModalShow(!isModalShow);
+    dispatch(changeCreationBarVisibility());
+  };
+
   return (
     <>
       {isCtrlButtonsShow ? (
         <Stack direction="row" sx={{ justifyContent: 'end' }}>
-          <TableButton
-            icon={<EditIcon />}
-            handleClick={() => setIsModalShow(!isModalShow)}
-          />
+          <TableButton icon={<EditIcon />} handleClick={handleEditBtnClick} />
           <TableArchiveButton
             handleClick={() =>
               dispatch(updateNote({ id: noteId, status: newStatus }))

@@ -9,6 +9,7 @@ import {
   getFilteredNotes,
   getSummary,
 } from '../../../redux/notes/notes-selectors';
+import updateNotesStructure from '../../../utils/updateNotesStructure';
 
 export default function TableBody(props) {
   const notesList = useSelector(getFilteredNotes);
@@ -16,7 +17,9 @@ export default function TableBody(props) {
 
   const { tableType, isControlButtonsShow, handleSwitchNoteSelection } = props;
   const isNotesTable = tableType === TABLE_TYPE.NOTES;
-  const tableData = isNotesTable ? notesList : summaryList;
+  const tableData = isNotesTable
+    ? updateNotesStructure(notesList)
+    : summaryList;
 
   const createRowMarkup = note => {
     const keys = Object.keys(note);

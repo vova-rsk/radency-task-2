@@ -4,20 +4,18 @@ export const getNotes = state => state.notes;
 
 export const getFilter = state => state.filter;
 
-export const getModalVisibilityStatus = state => state.modalShow;
+export const getNoteCreationBarShowStatus = state => state.creationBarShow;
 
 export const getFilteredNotes = createSelector(
   [getNotes, getFilter],
-  (notes, filter) =>
-    notes
-      .filter(({ status }) => status === filter)
-      .map(note => {
-        const newNote = { ...note };
-        newNote.dates = newNote.dates ? newNote.dates.join(', ') : '';
-        delete newNote.status;
+  (notes, filter) => notes.filter(({ status }) => status === filter),
+  // .map(note => {
+  //   const newNote = { ...note };
+  //   newNote.dates = newNote.dates ? newNote.dates.join(', ') : '';
+  //   delete newNote.status;
 
-        return newNote;
-      }),
+  //   return newNote;
+  // }),
 );
 
 export const getSummary = state =>
