@@ -67,13 +67,13 @@ export default function UniversalModal(props) {
     const action = isNewNote ? addNote : updateNote;
 
     dispatch(action(noteData));
-    handleModalClose();
     !isNewNote && dispatch(changeCreationBarVisibility());
+    handleModalClose();
   };
 
   const handleCloseBtnClick = () => {
-    handleModalClose();
     !isNewNote && dispatch(changeCreationBarVisibility());
+    handleModalClose();
     return;
   };
 

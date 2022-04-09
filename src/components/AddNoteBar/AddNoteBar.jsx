@@ -9,17 +9,19 @@ export default function AddNoteBar() {
   const dispatch = useDispatch();
   const [isModalShow, setIsModalShow] = useState(false);
 
-  const handleClick = () => {
-    setIsModalShow(!isModalShow);
+  const handleChangeModalStatus = () => {
     dispatch(changeButtonsLockStatus());
+    setIsModalShow(!isModalShow);
   };
 
   return (
     <Container>
-      {isModalShow && <UniversalModal handleModalClose={handleClick} />}
+      {isModalShow && (
+        <UniversalModal handleModalClose={handleChangeModalStatus} />
+      )}
 
       {!isModalShow && (
-        <Button variant="contained" onClick={handleClick}>
+        <Button variant="contained" onClick={handleChangeModalStatus}>
           Create Note
         </Button>
       )}

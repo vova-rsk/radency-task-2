@@ -27,9 +27,13 @@ export default function BodyControlButtons(props) {
   const newStatus =
     location.pathname === ROUTES.ACTIVE ? STATUS.ARCHIVED : STATUS.ACTIVE;
 
-  const handleEditBtnClick = () => {
+  const handleChangeModalStatus = () => {
     setIsModalShow(!isModalShow);
     dispatch(changeButtonsLockStatus());
+  };
+
+  const handleEditBtnClick = () => {
+    handleChangeModalStatus();
     dispatch(changeCreationBarVisibility());
   };
 
@@ -58,7 +62,7 @@ export default function BodyControlButtons(props) {
       {isModalShow && (
         <UniversalModal
           noteId={noteId}
-          handleModalClose={() => setIsModalShow(!isModalShow)}
+          handleModalClose={handleChangeModalStatus}
         />
       )}
     </>
