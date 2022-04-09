@@ -18,26 +18,31 @@ export default function TableBody(props) {
   const isNotesTable = tableType === TABLE_TYPE.NOTES;
   const tableData = isNotesTable ? notesList : summaryList;
 
+  const createRowMarkup = note => {
+    const keys = Object.keys(note);
+
+    return keys.map((key, idx) =>
+      idx === 0 ? (
+        <StyledTableCell key={idx} idx={idx} type={tableType}>
+          <CategoryIcon categoryName={note.category} />
+        </StyledTableCell>
+      ) : (
+        <StyledTableCell key={idx} idx={idx} type={tableType}>
+          {note[key]}
+        </StyledTableCell>
+      ),
+    );
+  };
+
   return (
     <Body>
       {tableData &&
-        tableData.map(item => {
-          const keys = Object.keys(item);
-          const rowMarkup = keys.map((key, idx) =>
-            idx === 0 ? (
-              <StyledTableCell key={idx} idx={idx} type={tableType}>
-                <CategoryIcon categoryName={item.category} />
-              </StyledTableCell>
-            ) : (
-              <StyledTableCell key={idx} idx={idx} type={tableType}>
-                {item[key]}
-              </StyledTableCell>
-            ),
-          );
+        tableData.map(note => {
+          const rowMarkup = createRowMarkup(note);
 
           return (
             <TableRow
-              key={item.id}
+              key={note.id}
               sx={{
                 backgroundColor: 'rgba(187, 230, 230, 0.2)',
               }}
@@ -46,7 +51,7 @@ export default function TableBody(props) {
               {isNotesTable && (
                 <StyledTableCell key="CtrlBtns">
                   <BodyControlButtons
-                    noteId={item.id}
+                    noteId={note.id}
                     isCtrlButtonsShow={isControlButtonsShow}
                     handleSwitchNoteSelection={handleSwitchNoteSelection}
                   />
