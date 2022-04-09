@@ -1,8 +1,7 @@
 import { useSelector } from 'react-redux';
 import { TableBody as Body } from '@mui/material';
 import TableRow from '@mui/material/TableRow';
-import TableCell from '../TableCell';
-import { Text } from './TableBody.styled';
+import StyledTableCell from './TableBody.styled';
 import CategoryIcon from '../CategoryIcon';
 import BodyControlButtons from '../BodyControlButtons';
 import { TABLE_TYPE } from '../../../utils/constants';
@@ -26,13 +25,13 @@ export default function TableBody(props) {
           const keys = Object.keys(item);
           const rowMarkup = keys.map((key, idx) =>
             idx === 0 ? (
-              <TableCell key={idx}>
+              <StyledTableCell key={idx} idx={idx} type={tableType}>
                 <CategoryIcon categoryName={item.category} />
-              </TableCell>
+              </StyledTableCell>
             ) : (
-              <TableCell key={idx}>
-                <Text idx={idx}>{item[key]}</Text>
-              </TableCell>
+              <StyledTableCell key={idx} idx={idx} type={tableType}>
+                {item[key]}
+              </StyledTableCell>
             ),
           );
 
@@ -45,13 +44,13 @@ export default function TableBody(props) {
             >
               {rowMarkup}
               {isNotesTable && (
-                <TableCell key="CtrlBtns">
+                <StyledTableCell key="CtrlBtns">
                   <BodyControlButtons
                     noteId={item.id}
                     isCtrlButtonsShow={isControlButtonsShow}
                     handleSwitchNoteSelection={handleSwitchNoteSelection}
                   />
-                </TableCell>
+                </StyledTableCell>
               )}
             </TableRow>
           );

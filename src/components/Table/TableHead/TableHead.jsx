@@ -2,8 +2,7 @@ import { useSelector } from 'react-redux';
 import { TableHead as Head } from '@mui/material';
 import TableRow from '@mui/material/TableRow';
 import HeadControlButtons from '../HeadControlButtons';
-import TableCell from '../TableCell';
-import { Text } from './TableHead.styled';
+import StyledTableCell from './TableHead.styled';
 import captionsCapitalization from '../../../utils/captionsCapitalization';
 import {
   TABLE_TYPE,
@@ -38,20 +37,18 @@ export default function TableHead(props) {
         }}
       >
         {capitalizedCaptionList.map((caption, idx) => (
-          <TableCell key={idx} sx={{ color: '#fff' }}>
-            <Text>{idx > 0 && caption}</Text>
-          </TableCell>
+          <StyledTableCell key={idx}>{idx > 0 && caption}</StyledTableCell>
         ))}
 
         {isShowButtons && (
-          <TableCell key="CtrlBtns">
+          <StyledTableCell key="CtrlBtns">
             <HeadControlButtons
               selectedNotesIds={selectedNotesIds}
               isCtrlButtonsShow={isControlButtonsShow}
               handleSwitchButtons={handleSwitchButtons}
               handleResetSelectedNotesIds={handleResetSelectedNotesIds}
             />
-          </TableCell>
+          </StyledTableCell>
         )}
       </TableRow>
     </Head>
