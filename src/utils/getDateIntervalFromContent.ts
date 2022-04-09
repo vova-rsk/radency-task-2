@@ -5,9 +5,8 @@
 const REGEX =
   /([1-9]|0[1-9]|1[0-9]|2[0-9]|3[01])\/([1-9]|0[1-9]|1[0-2])\/[1-9][0-9]{3}/g;
 
-export default function getDateIntervalFromContent(text) {
+export default function getDateIntervalFromContent(text:string) {
   const result = text.match(REGEX);
-  console.log(result);
-  console.log(REGEX.test(text));
+
   return result ? [result[0], result[1]] : null;
 }
