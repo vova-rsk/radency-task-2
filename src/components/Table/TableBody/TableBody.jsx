@@ -45,7 +45,7 @@ export default function TableBody(props) {
       return (
         <TableRow
           key={note.id}
-          sx={{ backgroundColor: 'rgba(187, 230, 230, 0.2)' }}
+          sx={{ backgroundColor: 'rgba(217, 204, 255, 0.3)' }}
         >
           {rowMarkup}
           {isNotesTable && (
