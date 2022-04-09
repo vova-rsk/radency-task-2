@@ -37,30 +37,29 @@ export default function TableBody(props) {
     );
   };
 
-  return (
-    <Body>
-      {tableData &&
-        tableData.map(note => {
-          const rowMarkup = createRowMarkup(note);
+  const bodyMarkup =
+    tableData &&
+    tableData.map(note => {
+      const rowMarkup = createRowMarkup(note);
 
-          return (
-            <TableRow
-              key={note.id}
-              sx={{ backgroundColor: 'rgba(187, 230, 230, 0.2)' }}
-            >
-              {rowMarkup}
-              {isNotesTable && (
-                <StyledTableCell key="CtrlBtns">
-                  <BodyControlButtons
-                    noteId={note.id}
-                    isCtrlButtonsShow={isControlButtonsShow}
-                    handleSwitchNoteSelection={handleSwitchNoteSelection}
-                  />
-                </StyledTableCell>
-              )}
-            </TableRow>
-          );
-        })}
-    </Body>
-  );
+      return (
+        <TableRow
+          key={note.id}
+          sx={{ backgroundColor: 'rgba(187, 230, 230, 0.2)' }}
+        >
+          {rowMarkup}
+          {isNotesTable && (
+            <StyledTableCell key="CtrlBtns">
+              <BodyControlButtons
+                noteId={note.id}
+                isCtrlButtonsShow={isControlButtonsShow}
+                handleSwitchNoteSelection={handleSwitchNoteSelection}
+              />
+            </StyledTableCell>
+          )}
+        </TableRow>
+      );
+    });
+
+  return <Body>{bodyMarkup}</Body>;
 }

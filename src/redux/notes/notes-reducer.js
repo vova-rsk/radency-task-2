@@ -9,9 +9,9 @@ import {
   changeButtonsLockStatus,
   changeCreationBarVisibility,
 } from './notes-actions';
-import notes from '../../db';
+import initNotes from '../../db';
 
-const noteListReducer = createReducer(notes, {
+const noteListReducer = createReducer(initNotes, {
   [addNote]: (state, action) => [...state, action.payload],
 
   [removeNote]: (state, action) => {

@@ -1,4 +1,4 @@
-const notes = [
+const initNotesList = [
   {
     id: '3edc4rf',
     name: 'Shopping list',
@@ -73,4 +73,4 @@ const notes = [
   },
 ];
 
-export default notes;
+export default initNotesList;
