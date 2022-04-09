@@ -30,12 +30,7 @@ export default function TableHead(props) {
 
   return (
     <Head>
-      <TableRow
-        sx={{
-          height: '40px',
-          backgroundColor: 'rgb(168, 165, 165)',
-        }}
-      >
+      <TableRow sx={{ backgroundColor: 'rgb(168, 165, 165)' }}>
         {capitalizedCaptionList.map((caption, idx) => (
           <StyledTableCell key={idx}>{idx > 0 && caption}</StyledTableCell>
         ))}
