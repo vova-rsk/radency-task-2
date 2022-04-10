@@ -10,7 +10,7 @@ interface IProps {
   handleClick: () => void;
 }
 
-export default function TableArchiveButton({ color, handleClick }:IProps) {
+const TableArchiveButton = ({ color, handleClick }:IProps) => {
   const location = useLocation();
 
   const archivePathname = `${ROUTES.ARCHIVE}`;
@@ -26,4 +26,6 @@ export default function TableArchiveButton({ color, handleClick }:IProps) {
       <TableButton icon={archiveButtonIcon} handleClick={handleClick} />
     </ButtonLocker>
   );
-}
+};
+
+export default TableArchiveButton;
