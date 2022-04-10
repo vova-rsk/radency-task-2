@@ -1,10 +1,10 @@
 import { TABLE_TYPE } from './constants';
 
-type capitalizationFn = (list: string[], type: string) => string[] | null;
+type capitalizationFn = (list: string[], type: string) => string[];
 
 const captionsCapitalization:capitalizationFn = (captionList, tableType) => {
   if (!captionList) {
-    return null;
+    return [];
   }
 
   return captionList.map(caption => {
