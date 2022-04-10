@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 
-export default function TableCheckbox(props) {
+interface IProps { 
+  handleSwitchNoteSelection: () => void;
+}
+
+const TableCheckbox = ({handleSwitchNoteSelection}:IProps) => {
   const [checked, setChecked] = useState(false);
 
-  const { handleSwitchNoteSelection } = props;
-
-  const handleChange = e => {
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     handleSwitchNoteSelection();
     setChecked(e.target.checked);
   };
@@ -19,4 +21,6 @@ export default function TableCheckbox(props) {
       sx={{ padding: '2px', marginLeft: 'auto', marginRight: 'auto' }}
     />
   );
-}
+};
+
+export default TableCheckbox

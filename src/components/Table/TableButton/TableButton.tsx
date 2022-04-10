@@ -1,9 +1,12 @@
 import IconButton from '@mui/material/IconButton';
 import ButtonLocker from '../../ButtonLocker/ButtonLocker';
 
-export default function TableButton(props) {
-  const { icon, handleClick } = props;
+interface IProps { 
+  icon:JSX.Element,
+  handleClick: () => void;
+}
 
+const TableButton = ({ icon, handleClick }:IProps) => {
   return (
     <ButtonLocker>
       <IconButton
@@ -17,3 +20,5 @@ export default function TableButton(props) {
     </ButtonLocker>
   );
 }
+
+export default TableButton;
