@@ -5,10 +5,14 @@ import TableButton from '../TableButton';
 import { ROUTES } from '../../../utils/constants';
 import ButtonLocker from '../../ButtonLocker/ButtonLocker';
 
-export default function TableArchiveButton(props) {
+interface IProps { 
+  color?: string;
+  handleClick: () => void;
+}
+
+export default function TableArchiveButton({ color, handleClick }:IProps) {
   const location = useLocation();
 
-  const { color, handleClick } = props;
   const archivePathname = `${ROUTES.ARCHIVE}`;
   const archiveButtonIcon =
     location.pathname === archivePathname ? (
