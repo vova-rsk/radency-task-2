@@ -21,5 +21,5 @@ export const updateNote = createAction<INote,'note/update'>('note/update');
 export const changeFilter = createAction<string,'filter/change'>('filter/change');
 export const removeNotesList = createAction<string[],'notes-list/remove'>('notes-list/remove');
 export const replaceNotesList = createAction<IReplaceObj,'notes-list/replace'>('notes-list/replace');
-export const changeButtonsLockStatus = createAction<boolean,'buttons-lock/change'>('buttons-lock/change');
-export const changeCreationBarVisibility = createAction<boolean,'modal/visibility change'>('modal/visibility change');
+export const changeButtonsLockStatus = createAction<undefined,'buttons-lock/change'>('buttons-lock/change');
+export const changeCreationBarVisibility = createAction<undefined,'modal/visibility change'>('modal/visibility change');
