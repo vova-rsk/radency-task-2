@@ -1,3 +1,7 @@
+interface ICategories { 
+  [key: string]: string;
+}
+
 export const STATUS = {
   ACTIVE: 'active',
   ARCHIVED: 'archived',
@@ -32,7 +36,7 @@ export const OPERATION_TYPE = {
   DELETE: 'remove',
 };
 
-export const CATEGORIES = {
+export const CATEGORIES:ICategories = {
   TASK: 'Task',
   RANDOM_THOUGHT: 'Random Thought',
   IDEA: 'Idea',
