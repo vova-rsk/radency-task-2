@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import { ROUTES } from '../../utils/constants';
-import ButtonLocker from '../ButtonLocker/ButtonLocker';
+import ButtonLocker from '../ButtonLocker';
 
 const pages = [
   {

@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import usePortal from '../../../hooks/usePortal';
 
 interface IProps { 
   id: string;
@@ -8,9 +7,10 @@ interface IProps {
 }
 
 const Portal = ({ id, children }:IProps) => {
-  const target = usePortal(id);
+  const target = document.querySelector(`#${id}`);
+  const portal = target && createPortal(children, target);
   
-  return createPortal(children, target);
+  return portal;
 };
 
 export default Portal;

@@ -3,7 +3,7 @@ import { TableBody as Body } from '@mui/material';
 import TableRow from '@mui/material/TableRow';
 import StyledTableCell from './TableBody.styled';
 import CategoryIcon from '../CategoryIcon';
-import BodyControlButtons from '../BodyControlButtons';
+import BodyControlButtons from '../BodyControlButtons/index.ts';
 import { TABLE_TYPE } from '../../../utils/constants';
 import {
   getFilteredNotes,

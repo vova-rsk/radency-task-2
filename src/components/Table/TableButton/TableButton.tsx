@@ -1,5 +1,5 @@
 import IconButton from '@mui/material/IconButton';
-import ButtonLocker from '../../ButtonLocker/ButtonLocker';
+import ButtonLocker from '../../ButtonLocker';
 
 interface IProps { 
   icon:JSX.Element,

@@ -3,7 +3,7 @@ import ArchiveIcon from '@mui/icons-material/Archive';
 import UnarchiveIcon from '@mui/icons-material/Unarchive';
 import TableButton from '../TableButton';
 import { ROUTES } from '../../../utils/constants';
-import ButtonLocker from '../../ButtonLocker/ButtonLocker';
+import ButtonLocker from '../../ButtonLocker';
 
 interface IProps { 
   color?: string;

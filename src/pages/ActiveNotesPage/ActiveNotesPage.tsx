@@ -5,7 +5,7 @@ import { TABLE_TYPE } from '../../utils/constants';
 import Container from './ActiveNotesPage.styled';
 import { getNoteCreationBarShowStatus } from '../../redux/notes/notes-selectors';
 
-export default function ActiveNotesPage() {
+const ActiveNotesPage = () => {
   const isShowCreationBar = useSelector(getNoteCreationBarShowStatus);
 
   return (
@@ -19,4 +19,6 @@ export default function ActiveNotesPage() {
       </div>
     </Container>
   );
-}
+};
+
+export default ActiveNotesPage;

@@ -4,12 +4,12 @@ import TableRow from '@mui/material/TableRow';
 import HeadControlButtons from '../HeadControlButtons';
 import StyledTableCell from './TableHead.styled';
 import captionsCapitalization from '../../../utils/captionsCapitalization';
+import { getFilteredNotes } from '../../../redux/notes/notes-selectors';
 import {
   TABLE_TYPE,
   NOTES_HEAD_CAPTIONS,
   SUMMARY_HEAD_CAPTIONS,
 } from '../../../utils/constants';
-import { getFilteredNotes } from '../../../redux/notes/notes-selectors';
 
 interface IProps { 
   tableType: string;

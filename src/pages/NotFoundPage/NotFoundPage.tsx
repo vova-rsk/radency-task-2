@@ -1,7 +1,7 @@
 import CardMedia from '@mui/material/CardMedia';
 import NotFoundImg from './404-alien.png';
 
-export default function NotFoundPage() {
+const NotFoundPage = () => {
   return (
     <div
       style={{
@@ -19,4 +19,6 @@ export default function NotFoundPage() {
       />
     </div>
   );
-}
+};
+
+export default NotFoundPage;
