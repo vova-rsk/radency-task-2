@@ -6,7 +6,7 @@ interface INote {
   created: string;
   category: string;
   content: string;
-  dates: [String, string] | null;
+  dates: [string, string] | null;
   status: string;
 }
 
