@@ -13,10 +13,17 @@ import {
   removeNotesList,
 } from '../../../redux/notes/notes-actions';
 
-export default function HeadControlButtons(props) {
+interface IProps {
+  selectedNotesIds:string[];
+  isCtrlButtonsShow:boolean;
+  handleSwitchButtons:()=>void;
+  handleResetSelectedNotesIds:()=>void;
+}
+
+const HeadControlButtons = (props:IProps) => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const [operation, setOperation] = useState(null);
+  const [operation, setOperation] = useState<string>('');
 
   const {
     selectedNotesIds,
@@ -25,7 +32,7 @@ export default function HeadControlButtons(props) {
     handleResetSelectedNotesIds,
   } = props;
 
-  const handleCtrlButtonClick = operationType => {
+  const handleCtrlButtonClick = (operationType:string) => {
     setOperation(operationType);
     handleSwitchButtons();
   };
@@ -81,4 +88,6 @@ export default function HeadControlButtons(props) {
       )}
     </>
   );
-}
+};
+
+export default HeadControlButtons;

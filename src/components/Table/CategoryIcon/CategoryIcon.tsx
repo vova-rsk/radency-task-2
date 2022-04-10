@@ -7,9 +7,13 @@ import QuestionMarkOutlinedIcon from '@mui/icons-material/QuestionMarkOutlined';
 import { CATEGORIES } from '../../../utils/constants';
 import Container from './CategoryIcon.styled';
 
-export default function CategoryIcon(props) {
-  const { categoryName } = props;
+interface IProps { 
+  categoryName: string;
+}
+
+const CategoryIcon = ({ categoryName }:IProps) => {
   const { TASK, RANDOM_THOUGHT, IDEA, QUOTA } = CATEGORIES;
+  
   let icon = null;
 
   switch (categoryName) {
@@ -41,4 +45,6 @@ export default function CategoryIcon(props) {
       />
     </Container>
   );
-}
+};
+
+export default CategoryIcon;

@@ -16,7 +16,13 @@ import {
   changeCreationBarVisibility,
 } from '../../../redux/notes/notes-actions';
 
-export default function BodyControlButtons(props) {
+interface IProps { 
+  noteId: string;
+  isCtrlButtonsShow:boolean;
+  handleSwitchNoteSelection: (id:string) => void;
+}
+
+const BodyControlButtons = (props:IProps) => {
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -67,4 +73,6 @@ export default function BodyControlButtons(props) {
       )}
     </>
   );
-}
+};
+
+export default BodyControlButtons;
