@@ -9,13 +9,11 @@ interface IProps {
   tableType: string;
 };
 
-type handleSwitchFn = (id:string) => void;
-
 const UniversalTable = ({tableType}:IProps) => {
   const [isCtrlsBtnsShow, setIsCtrlsBtnsShow] = useState(true);
   const [selectedNotesIds, setMarkedNotesIds] = useState<string[]>([]);
 
-  const handleSwitchNoteSelection:handleSwitchFn = noteId => {
+  const handleSwitchNoteSelection = (noteId:string) => {
     const isExist = selectedNotesIds.includes(noteId);
 
     if (isExist) {

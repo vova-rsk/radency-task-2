@@ -10,9 +10,9 @@ interface INote {
   status: string;
 }
 
-interface ISummaryEntry { 
-  id: null | string;
-  category: null | string;
+interface ISummary { 
+  id: string;
+  category: string;
   active: number;
   archived: number;
 }
@@ -42,7 +42,7 @@ export const getFilteredNotes = createSelector(
 );
 
 export const getSummary = (state: IState) =>{
-  return state.notes.reduce((summary: ISummaryEntry[], note) => {
+  return state.notes.reduce((summary: ISummary[], note) => {
     const { category, status } = note;
     const existingEntry = summary.find(elem => elem.category === category);
     
