@@ -17,23 +17,23 @@ interface ISummaryEntry {
   archived: number;
 }
 
-interface State { 
+interface IState { 
   notes: INote[];
   filter: string;
   creationBarShow: boolean;
   isButtonsLock: boolean;
 }
 
-type getNotesFn = (s: State) => INote[];
-type getFilterFn = (s: State) => string;
-type getStatusFn = (s: State) => boolean;
+type getNotesFn = (s: IState) => INote[];
+type getFilterFn = (s: IState) => string;
+type getStatusFn = (s: IState) => boolean;
 
 export const getNotes:getNotesFn = state => state.notes;
 export const getFilter:getFilterFn = state => state.filter;
 export const getNoteCreationBarShowStatus:getStatusFn = state => state.creationBarShow;
 export const getButtonLockStatus:getStatusFn = state => state.isButtonsLock;
 
-export const getNoteById = (id:string) => (state:State) =>
+export const getNoteById = (id:string) => (state:IState) =>
   state.notes.find(note => note.id === id);
 
 export const getFilteredNotes = createSelector(
@@ -41,7 +41,7 @@ export const getFilteredNotes = createSelector(
   (notes, filter) => notes.filter(note => note.status === filter),
 );
 
-export const getSummary = (state: State) =>{
+export const getSummary = (state: IState) =>{
   return state.notes.reduce((summary: ISummaryEntry[], note) => {
     const { category, status } = note;
     const existingEntry = summary.find(elem => elem.category === category);

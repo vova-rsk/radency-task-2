@@ -1,6 +1,8 @@
 import { TABLE_TYPE } from './constants';
 
-export default function captionsCapitalization(captionList, tableType) {
+type capitalizationFn = (list: string[], type: string) => string[] | null;
+
+const captionsCapitalization:capitalizationFn = (captionList, tableType) => {
   if (!captionList) {
     return null;
   }
@@ -17,4 +19,6 @@ export default function captionsCapitalization(captionList, tableType) {
 
     return capitalizedCaptionList;
   });
-}
+ }
+
+export default captionsCapitalization;

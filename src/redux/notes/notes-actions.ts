@@ -1,12 +1,25 @@
-import { createAction } from '@reduxjs/toolkit';
+import { createAction, } from '@reduxjs/toolkit';
 
-export const addNote = createAction('note/add');
-export const removeNote = createAction('note/remove');
-export const updateNote = createAction('note/update');
-export const changeFilter = createAction('filter/change');
-export const removeNotesList = createAction('notes-list/remove');
-export const replaceNotesList = createAction('notes-list/replace');
-export const changeButtonsLockStatus = createAction('buttons-lock/change');
-export const changeCreationBarVisibility = createAction(
-  'modal/visibility change',
-);
+interface INote { 
+  id: string;
+  name: string;
+  created: string;
+  category: string;
+  content: string;
+  dates: [string, string] | null;
+  status: string;
+}
+
+interface IReplaceObj{ 
+  ids: string[];
+  status: string;
+}
+
+export const addNote = createAction<INote, 'note/add'>('note/add');
+export const removeNote = createAction<string,'note/remove'>('note/remove');
+export const updateNote = createAction<INote,'note/update'>('note/update');
+export const changeFilter = createAction<string,'filter/change'>('filter/change');
+export const removeNotesList = createAction<string[],'notes-list/remove'>('notes-list/remove');
+export const replaceNotesList = createAction<IReplaceObj,'notes-list/replace'>('notes-list/replace');
+export const changeButtonsLockStatus = createAction<boolean,'buttons-lock/change'>('buttons-lock/change');
+export const changeCreationBarVisibility = createAction<boolean,'modal/visibility change'>('modal/visibility change');

@@ -1,4 +1,14 @@
-const initNotesList = [
+interface INote { 
+  id: string;
+  name: string;
+  created: string;
+  category: string;
+  content: string;
+  dates: [string, string] | null;
+  status: string;
+}
+
+const initNotesList:INote[] = [
   {
     id: '3edc4rf',
     name: 'Shopping list',
