@@ -9,7 +9,16 @@ import DoneIcon from '@mui/icons-material/Done';
 import Container from './ModalForm.styled';
 import { CATEGORIES } from '../../../utils/constants';
 
-export default function ModalForm(props) {
+interface IProps { 
+  name: string;
+  category: string;
+  content: string;
+  handleInputChange: () => void;
+  handleApplyBtnClick:()=> void;
+  handleCloseBtnClick: () => void;
+}
+
+export default function ModalForm(props:IProps) {
   const {
     name,
     category,

@@ -20,7 +20,7 @@ const pages = [
   },
 ];
 
-export default function ResponsiveAppBar() {
+const ResponsiveAppBar = () => {
   const navigate = useNavigate();
 
   return (
@@ -56,4 +56,6 @@ export default function ResponsiveAppBar() {
       </Container>
     </AppBar>
   );
-}
+};
+
+export default ResponsiveAppBar;

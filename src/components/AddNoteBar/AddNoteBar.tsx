@@ -5,7 +5,7 @@ import UniversalModal from '../Modal/UniversalModal';
 import Container from './AddNoteBar.styled';
 import { changeButtonsLockStatus } from '../../redux/notes/notes-actions';
 
-export default function AddNoteBar() {
+const AddNoteBar =()=> {
   const dispatch = useDispatch();
   const [isModalShow, setIsModalShow] = useState(false);
 
@@ -27,4 +27,6 @@ export default function AddNoteBar() {
       )}
     </Container>
   );
-}
+};
+
+export default AddNoteBar;
