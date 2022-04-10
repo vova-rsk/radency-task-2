@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { changeFilter } from '../../redux/notes/notes-actions';
 import { STATUS, ROUTES } from '../../utils/constants';
 
-export default function App() {
+const App = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -25,4 +25,6 @@ export default function App() {
       <Outlet />
     </Container>
   );
-}
+};
+
+export default App;

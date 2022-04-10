@@ -1,3 +1,4 @@
+import React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -13,12 +14,12 @@ interface IProps {
   name: string;
   category: string;
   content: string;
-  handleInputChange: () => void;
-  handleApplyBtnClick:()=> void;
+  handleInputChange: (name:string, value:string)=>void;
+  handleApplyBtnClick: () => void;
   handleCloseBtnClick: () => void;
 }
 
-export default function ModalForm(props:IProps) {
+const ModalForm = (props:IProps) => {
   const {
     name,
     category,
@@ -52,7 +53,10 @@ export default function ModalForm(props:IProps) {
           label="category *"
           name="category"
           sx={{ width: '200px' }}
-          onChange={handleInputChange}
+          onChange={e => { 
+                const { name, value } = e.target;
+                handleInputChange(name, value); 
+          }}
         >
           {categoriesKeys.map((key, idx) => (
             <MenuItem value={CATEGORIES[key]} key={idx}>
@@ -67,7 +71,10 @@ export default function ModalForm(props:IProps) {
           label="name"
           sx={{ width: '250px', marginLeft: '20px' }}
           value={name}
-          onChange={handleInputChange}
+          onChange={e => {
+            const { name, value } = e.target;
+            handleInputChange(name, value);
+          }}
         />
         <TextField
           required
@@ -76,7 +83,10 @@ export default function ModalForm(props:IProps) {
           label="content"
           sx={{ width: '400px', marginLeft: '20px' }}
           value={content}
-          onChange={handleInputChange}
+          onChange={e => {
+            const { name, value } = e.target;
+            handleInputChange(name, value);
+          }}
         />
       </FormControl>
       <FormControl
@@ -111,4 +121,6 @@ export default function ModalForm(props:IProps) {
       </FormControl>
     </Container>
   );
-}
+};
+
+export default ModalForm;

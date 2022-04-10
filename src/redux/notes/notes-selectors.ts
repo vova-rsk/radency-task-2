@@ -33,7 +33,7 @@ export const getFilter:getFilterFn = state => state.filter;
 export const getNoteCreationBarShowStatus:getStatusFn = state => state.creationBarShow;
 export const getButtonLockStatus:getStatusFn = state => state.isButtonsLock;
 
-export const getNoteById = (id:string) => (state:IState) =>
+export const getNoteById = (id:string|undefined) => (state:IState) =>
   state.notes.find(note => note.id === id);
 
 export const getFilteredNotes = createSelector(

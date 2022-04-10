@@ -1,34 +1,53 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { STATUS } from '../../../utils/constants';
 import { getNoteById } from '../../../redux/notes/notes-selectors';
+import ModalForm from '../ModalForm';
+import Portal from '../Portal';
+import getCurrentFormatedDate from '../../../utils/getCurrentFormatedDate';
+import getDateIntervalFromContent from '../../../utils/getDateIntervalFromContent';
 import {
   addNote,
   updateNote,
   changeCreationBarVisibility,
 } from '../../../redux/notes/notes-actions';
-import getCurrentFormatedDate from '../../../utils/getCurrentFormatedDate';
-import getDateIntervalFromContent from '../../../utils/getDateIntervalFromContent';
-import ModalForm from '../ModalForm';
-import Portal from '../Portal';
 
-export default function UniversalModal(props) {
-  const { noteId = null, handleModalClose } = props;
+interface IProps { 
+  noteId?: string;
+  handleModalClose: () => void;
+}
+
+interface INote { 
+  id: string;
+  name: string;
+  created: string;
+  category: string;
+  content: string;
+  dates: [string, string] | null;
+  status: string;
+}
+
+const UniversalModal = (props:IProps) => {
+  const { noteId, handleModalClose } = props;
 
   const noteToEdit = useSelector(getNoteById(noteId));
   const dispatch = useDispatch();
-  const [category, setCategory] = useState(noteId ? noteToEdit.category : '');
-  const [name, setName] = useState(noteId ? noteToEdit.name : '');
-  const [content, setContent] = useState(noteId ? noteToEdit.content : '');
+  const [category, setCategory] = useState('');
+  const [name, setName] = useState('');
+  const [content, setContent] = useState('');
 
-  const isNewNote = !Boolean(noteId);
+  useEffect(() => {
+    if (noteToEdit) { 
+      const { category, name, content } = noteToEdit;
 
-  const handleInputChange = e => {
-    e.preventDefault();
+      setName(name);
+      setCategory(category);
+      setContent(content);
+    }
+  }, [noteToEdit]);
 
-    const { name, value } = e.target;
-
+  const handleInputChange = (name:string, value:string) => {
     switch (name) {
       case 'name':
         setName(value);
@@ -49,7 +68,7 @@ export default function UniversalModal(props) {
       return;
     }
 
-    let noteData = {
+    let noteData:INote = {
       id: nanoid(7),
       name,
       created: getCurrentFormatedDate(),
@@ -59,20 +78,20 @@ export default function UniversalModal(props) {
       status: STATUS.ACTIVE,
     };
 
-    if (!isNewNote) {
+    if (noteToEdit) {
       const { id, created, status } = noteToEdit;
       noteData = { ...noteData, id, created, status };
     }
 
-    const action = isNewNote ? addNote : updateNote;
+    const action = noteToEdit ? updateNote : addNote;
 
     dispatch(action(noteData));
-    !isNewNote && dispatch(changeCreationBarVisibility());
+    noteToEdit && dispatch(changeCreationBarVisibility());
     handleModalClose();
   };
 
   const handleCloseBtnClick = () => {
-    !isNewNote && dispatch(changeCreationBarVisibility());
+    noteToEdit && dispatch(changeCreationBarVisibility());
     handleModalClose();
     return;
   };
@@ -102,4 +121,6 @@ export default function UniversalModal(props) {
       )}
     </>
   );
-}
+};
+
+export default UniversalModal;
