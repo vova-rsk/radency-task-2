@@ -5,13 +5,17 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '../TableHead';
 import TableBody from '../TableBody';
 
-export default function UniversalTable(props) {
+interface IProps { 
+  tableType: string;
+};
+
+type handleSwitchFn = (id:string) => void;
+
+const UniversalTable = ({tableType}:IProps) => {
   const [isCtrlsBtnsShow, setIsCtrlsBtnsShow] = useState(true);
-  const [selectedNotesIds, setMarkedNotesIds] = useState([]);
+  const [selectedNotesIds, setMarkedNotesIds] = useState<string[]>([]);
 
-  const { tableType } = props;
-
-  const handleSwitchNoteSelection = noteId => {
+  const handleSwitchNoteSelection:handleSwitchFn = noteId => {
     const isExist = selectedNotesIds.includes(noteId);
 
     if (isExist) {
@@ -41,4 +45,6 @@ export default function UniversalTable(props) {
       </MuiTable>
     </TableContainer>
   );
-}
+};
+
+export default UniversalTable;

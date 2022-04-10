@@ -11,7 +11,15 @@ import {
 } from '../../../utils/constants';
 import { getFilteredNotes } from '../../../redux/notes/notes-selectors';
 
-export default function TableHead(props) {
+interface IProps { 
+  tableType: string;
+  selectedNotesIds: string[];
+  isControlButtonsShow: boolean;
+  handleSwitchButtons: () => void;
+  handleResetSelectedNotesIds: () => void;
+}
+
+const TableHead = (props:IProps) => {
   const notesList = useSelector(getFilteredNotes);
 
   const {
@@ -26,7 +34,7 @@ export default function TableHead(props) {
   const captionList = isNotesTable
     ? NOTES_HEAD_CAPTIONS
     : SUMMARY_HEAD_CAPTIONS;
-  const capitalizedCaptionList = captionsCapitalization(captionList);
+  const capitalizedCaptionList = captionsCapitalization(captionList, tableType);
 
   return (
     <Head>
@@ -49,3 +57,5 @@ export default function TableHead(props) {
     </Head>
   );
 }
+
+export default TableHead;
