@@ -5,10 +5,19 @@ interface INote {
   category: string;
   content: string;
   dates: [string, string] | null;
-  status:string
+  status: string;
 }
 
-type updateFn = (notes: INote[]) => object[];
+interface IUpdatedNote { 
+  id: string;
+  name: string;
+  created: string;
+  category: string;
+  content: string;
+  dates: string;
+}
+
+type updateFn = (notes: INote[]) => IUpdatedNote[];
 
 const updateNotesStructure:updateFn = (notesList) => {
   return notesList.map(note => {
