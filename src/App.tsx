@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Container from './App.styled';
-import AppBar from '../AppBar';
-import { changeFilter } from '../../redux/notes/notes-actions';
-import { STATUS, ROUTES } from '../../utils/constants';
+import AppBar from './components/AppBar';
+import { changeFilter } from './redux/notes/notes-actions';
+import { STATUS, ROUTES } from './utils/constants';
 
 const App = () => {
   const dispatch = useDispatch();

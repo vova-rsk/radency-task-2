@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import './index.css';
-import App from './components/App';
+import App from './App';
 import {store} from './redux/store';
 import ActiveNotesPage from './pages/ActiveNotesPage/ActiveNotesPage';
 import ArchivePage from './pages/ArchivePage/ArchivePage';
