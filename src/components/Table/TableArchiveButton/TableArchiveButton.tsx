@@ -13,9 +13,8 @@ interface IProps {
 const TableArchiveButton = ({ color, handleClick }:IProps) => {
   const location = useLocation();
 
-  const archivePathname = `${ROUTES.ARCHIVE}`;
   const archiveButtonIcon =
-    location.pathname === archivePathname ? (
+    location.pathname === ROUTES.ARCHIVE ? (
       <UnarchiveIcon sx={{ color }} />
     ) : (
       <ArchiveIcon sx={{ color }} />
