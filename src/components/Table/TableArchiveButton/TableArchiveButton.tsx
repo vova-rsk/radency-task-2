@@ -1,9 +1,10 @@
-import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import UnarchiveIcon from '@mui/icons-material/Unarchive';
 import TableButton from '../TableButton';
-import { ROUTES } from '../../../utils/constants';
+import { STATUS } from '../../../utils/constants';
 import ButtonLocker from '../../ButtonLocker';
+import { getFilter } from '../../../redux/notes/notes-selectors';
 
 interface IProps { 
   color?: string;
@@ -11,10 +12,10 @@ interface IProps {
 }
 
 const TableArchiveButton = ({ color, handleClick }:IProps) => {
-  const location = useLocation();
+  const currentStatus = useSelector(getFilter);
 
   const archiveButtonIcon =
-    location.pathname === ROUTES.ARCHIVE ? (
+    currentStatus === STATUS.ARCHIVED ? (
       <UnarchiveIcon sx={{ color }} />
     ) : (
       <ArchiveIcon sx={{ color }} />

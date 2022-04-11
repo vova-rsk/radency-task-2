@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 import TableButton from '../TableButton';
 import TableArchiveButton from '../TableArchiveButton';
-import { OPERATION_TYPE, STATUS, ROUTES } from '../../../utils/constants';
+import { OPERATION_TYPE, STATUS } from '../../../utils/constants';
+import { getFilter } from '../../../redux/notes/notes-selectors';
 import {
   replaceNotesList,
   removeNotesList,
@@ -22,7 +22,7 @@ interface IProps {
 
 const HeadControlButtons = (props:IProps) => {
   const dispatch = useDispatch();
-  const location = useLocation();
+  const currentStatus = useSelector(getFilter);
   const [operation, setOperation] = useState<string>('');
 
   const {
@@ -45,11 +45,11 @@ const HeadControlButtons = (props:IProps) => {
     if (operation === OPERATION_TYPE.DELETE) {
       dispatch(removeNotesList(selectedNotesIds));
     } else {
-      const { pathname } = location;
-      const status =
-        pathname === ROUTES.ACTIVE ? STATUS.ARCHIVED : STATUS.ACTIVE;
+      const newStatus = currentStatus === STATUS.ACTIVE
+        ? STATUS.ARCHIVED
+        : STATUS.ACTIVE;
 
-      dispatch(replaceNotesList({ ids: selectedNotesIds, status }));
+      dispatch(replaceNotesList({ ids: selectedNotesIds, status:newStatus }));
     }
 
     handleResetSelectedNotesIds();

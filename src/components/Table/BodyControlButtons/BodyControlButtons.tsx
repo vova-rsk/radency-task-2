@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Stack from '@mui/material/Stack';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import TableButton from '../TableButton';
 import TableArchiveButton from '../TableArchiveButton';
 import TableCheckbox from '../TableCheckbox';
-import { STATUS, ROUTES } from '../../../utils/constants';
+import { STATUS } from '../../../utils/constants';
 import UniversalModal from '../../Modal/UniversalModal';
+import { getFilter } from '../../../redux/notes/notes-selectors';
 import {
   removeNote,
   updateNote,
@@ -23,15 +23,16 @@ interface IProps {
 }
 
 const BodyControlButtons = (props:IProps) => {
-  const location = useLocation();
   const dispatch = useDispatch();
+  const currentStatus = useSelector(getFilter);
 
   const [isModalShow, setIsModalShow] = useState(false);
 
   const { noteId, isCtrlButtonsShow, handleSwitchNoteSelection } = props;
 
-  const newStatus =
-    location.pathname === ROUTES.ACTIVE ? STATUS.ARCHIVED : STATUS.ACTIVE;
+  const newStatus = currentStatus === STATUS.ACTIVE
+    ? STATUS.ARCHIVED
+    : STATUS.ACTIVE;
 
   const handleChangeModalStatus = () => {
     setIsModalShow(!isModalShow);
