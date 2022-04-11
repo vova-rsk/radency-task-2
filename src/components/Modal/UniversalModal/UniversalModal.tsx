@@ -13,6 +13,9 @@ import {
   changeCreationBarVisibility,
 } from '../../../redux/notes/notes-actions';
 
+  import { toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+
 interface IProps { 
   noteId?: string;
   handleModalClose: () => void;
@@ -65,9 +68,24 @@ const UniversalModal = (props:IProps) => {
 
   const handleApplyBtnClick = () => {
     if (!name || !category || !content) {
+
+      const emptyFieldsList = Object
+        .entries({ category, name, content })
+        .reduce((acc: string[], entry) => {
+          if (entry[1] === '') {
+            const capitalizedValue = entry[0][0].toUpperCase() + entry[0].slice(1);
+            acc.push(capitalizedValue);
+          }
+          
+          return acc
+        }, []);
+
+      const fields = emptyFieldsList.length > 1 ? emptyFieldsList.join(', ') : emptyFieldsList[0]
+      
+      toast.error(`field(s) "${fields}" must not be empty`);
       return;
     }
-
+    
     let noteData:INote = {
       id: nanoid(7),
       name,
@@ -99,7 +117,7 @@ const UniversalModal = (props:IProps) => {
   return (
     <>
       {noteId ? (
-        <Portal id={'edit-note-container'}>
+        <Portal id={'#edit-note-container'}>
           <ModalForm
             name={name}
             category={category}
