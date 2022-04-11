@@ -6,7 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import TableButton from '../TableButton';
 import TableArchiveButton from '../TableArchiveButton';
-import ControlledCheckbox from '../TableCheckbox';
+import TableCheckbox from '../TableCheckbox';
 import { STATUS, ROUTES } from '../../../utils/constants';
 import UniversalModal from '../../Modal/UniversalModal';
 import {
@@ -60,7 +60,7 @@ const BodyControlButtons = (props:IProps) => {
         </Stack>
       ) : (
         <Stack direction="row">
-          <ControlledCheckbox
+          <TableCheckbox
             handleSwitchNoteSelection={() => handleSwitchNoteSelection(noteId)}
           />
         </Stack>

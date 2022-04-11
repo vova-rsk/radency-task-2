@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 
 interface IProps { 
@@ -6,17 +5,10 @@ interface IProps {
 }
 
 const TableCheckbox = ({handleSwitchNoteSelection}:IProps) => {
-  const [checked, setChecked] = useState(false);
-
-  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-    handleSwitchNoteSelection();
-    setChecked(e.target.checked);
-  };
 
   return (
     <Checkbox
-      checked={checked}
-      onChange={handleChange}
+      onChange={e=>handleSwitchNoteSelection()}
       inputProps={{ 'aria-label': 'controlled' }}
       sx={{ padding: '2px', marginLeft: 'auto', marginRight: 'auto' }}
     />
