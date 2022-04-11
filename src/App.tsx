@@ -5,6 +5,7 @@ import Container from './App.styled';
 import AppBar from './components/AppBar';
 import { changeFilter } from './redux/notes/notes-actions';
 import { STATUS, ROUTES } from './utils/constants';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -21,8 +22,20 @@ const App = () => {
 
   return (
     <Container>
-      <AppBar />
-      <Outlet />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+       />
+        <AppBar />
+        <Outlet />
+      
     </Container>
   );
 };

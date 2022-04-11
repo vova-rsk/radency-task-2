@@ -47,15 +47,9 @@ const TableBody = (props:IProps) => {
 
   const createRowMarkup = (rowData:RowData) => {
     return Object.values(rowData).map((value:string|number, idx) =>
-      idx === 0 ? (
         <StyledTableCell key={idx} index={idx} type={tableType}>
-            <CategoryIcon categoryName={rowData.category} />
+            {idx === 0 ? <CategoryIcon categoryName={rowData.category} /> : value}
         </StyledTableCell>
-      ) : (
-        <StyledTableCell key={idx} index={idx} type={tableType}>
-              {value}
-        </StyledTableCell>
-      ),
     );
   };
 

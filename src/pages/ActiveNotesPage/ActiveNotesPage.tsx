@@ -11,9 +11,11 @@ const ActiveNotesPage = () => {
   return (
     <Container>
       <div>
-        <Table tableType={TABLE_TYPE.NOTES} />
+          <Table tableType={TABLE_TYPE.NOTES} />
       </div>
-      <div id="edit-note-container">{isShowCreationBar && <AddNoteBar />}</div>
+      <div id="edit-note-container">
+        {isShowCreationBar && <AddNoteBar />}  
+      </div>
       <div>
         <Table tableType={TABLE_TYPE.SUMMARY} />
       </div>

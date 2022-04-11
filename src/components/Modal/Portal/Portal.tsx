@@ -7,7 +7,7 @@ interface IProps {
 }
 
 const Portal = ({ id, children }:IProps) => {
-  const target = document.querySelector(`#${id}`);
+  const target = document.querySelector(id);
   const portal = target && createPortal(children, target);
   
   return portal;

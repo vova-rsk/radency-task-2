@@ -5,7 +5,10 @@ import Container from './ArchivePage.styled';
 const ArchivePage = () => {
   return (
     <Container>
-      <Table tableType={TABLE_TYPE.NOTES} />
+      <div>
+        <Table tableType={TABLE_TYPE.NOTES} />
+      </div>
+      <div id="edit-note-container"></div>
     </Container>
   );
 };
