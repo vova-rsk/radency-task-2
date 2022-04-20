@@ -6,7 +6,6 @@ import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import DoneIcon from '@mui/icons-material/Done';
-import Container from './ModalForm.styled';
 import { CATEGORIES } from '../../../utils/constants';
 
 interface IProps { 
@@ -31,7 +30,7 @@ const ModalForm = (props:IProps) => {
   const categoriesKeys = Object.keys(CATEGORIES);
 
   return (
-    <Container>
+    <div className="flex w-[800px] border border-solid border-gray-300 rounded-md">
       <FormControl
         required
         sx={{
@@ -118,7 +117,7 @@ const ModalForm = (props:IProps) => {
           <CloseIcon fontSize="inherit" />
         </IconButton>
       </FormControl>
-    </Container>
+    </div>
   );
 };
 

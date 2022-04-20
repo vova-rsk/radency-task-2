@@ -5,7 +5,6 @@ import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import QuestionMarkOutlinedIcon from '@mui/icons-material/QuestionMarkOutlined';
 import { CATEGORIES } from '../../../utils/constants';
-import Container from './CategoryIcon.styled';
 
 interface IProps { 
   categoryName: string;
@@ -34,8 +33,8 @@ const CategoryIcon = ({ categoryName }:IProps) => {
   }
 
   return (
-    <Container>
-      <SvgIcon
+    <div className="flex justify-center items-center w-10 h-10 text-white bg-gray-600 border-none rounded-full">
+       <SvgIcon
         component={icon}
         sx={{
           width: '30px',
@@ -43,7 +42,7 @@ const CategoryIcon = ({ categoryName }:IProps) => {
         }}
         inheritViewBox={true}
       />
-    </Container>
+    </div>
   );
 };
 

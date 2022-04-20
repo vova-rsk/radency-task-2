@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
 import UniversalModal from '../Modal/UniversalModal';
-import Container from './AddNoteBar.styled';
 import { changeButtonsLockStatus } from '../../redux/notes/notes-actions';
 
 const AddNoteBar =()=> {
@@ -15,7 +14,7 @@ const AddNoteBar =()=> {
   };
 
   return (
-    <Container>
+    <div className="flex justify-end items-center h-[60px]">
       {isModalShow && (
         <UniversalModal handleModalClose={handleChangeModalStatus} />
       )}
@@ -25,7 +24,7 @@ const AddNoteBar =()=> {
           Create Note
         </Button>
       )}
-    </Container>
+    </div>
   );
 };
 
