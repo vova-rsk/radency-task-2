@@ -24,7 +24,7 @@ export default exportedComponent;
 
 const Template: ComponentStory<typeof CategoryIcon> = (args) => <CategoryIcon {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {
+export const Icon = Template.bind({});
+Icon.args = {
    categoryName:''
 };
