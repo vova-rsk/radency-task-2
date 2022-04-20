@@ -70,6 +70,7 @@
     "@storybook/addon-essentials": "^6.4.22",
     "@storybook/addon-interactions": "^6.4.22",
     "@storybook/addon-links": "^6.4.22",
+    "@storybook/addon-storyshots": "^6.4.22",
     "@storybook/builder-webpack5": "^6.4.22",
     "@storybook/manager-webpack5": "^6.4.22",
     "@storybook/node-logger": "^6.4.22",
@@ -81,6 +82,7 @@
     "husky": "^7.0.4",
     "lint-staged": "^12.3.7",
     "prettier": "^2.6.2",
+    "react-test-renderer": "^18.0.0",
     "webpack": "^5.72.0"
   },
   "lint-staged": {
